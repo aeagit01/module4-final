@@ -7,7 +7,6 @@ public class Language {
     private Boolean isOfficial;
     private BigDecimal percentage;
 
-
     public String getLanguage() {
         return language;
     }

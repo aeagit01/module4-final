@@ -1,10 +1,9 @@
 package com.javarush.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Type;
 
-//import javax.persistence.*;
 import java.math.BigDecimal;
+
 @Entity
 @Table(schema = "world", name = "country_language")
 public class CountryLanguage {

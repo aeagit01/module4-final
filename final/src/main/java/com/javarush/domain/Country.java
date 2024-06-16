@@ -1,35 +1,28 @@
 package com.javarush.domain;
 
-//import javax.persistence.*;
 import jakarta.persistence.*;
-import org.hibernate.Hibernate;
-import org.hibernate.annotations.JdbcType;
 
 import java.math.BigDecimal;
 import java.util.Set;
+
 @Entity
-@Table(schema="world", name="country")
+@Table(schema = "world", name = "country")
 public class Country {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
     private String code;
     @Column(name = "code_2")
     private String alternativeCode;
     private String name;
     @Column(name = "continent")
-//    @Enumerated(EnumType.ORDINAL)
     @Convert(converter = com.javarush.converter.ContinentToInt.class)
     private Continent continent;
-
     private String region;
-
     @Column(name = "surface_area")
     private BigDecimal surfaceArea;
-
     @Column(name = "indep_year")
     private Short independenceYear;
-
     private Integer population;
     @Column(name = "life_expectancy")
     private BigDecimal lifeExpectancy;
@@ -49,6 +42,7 @@ public class Country {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Set<CountryLanguage> languages;
+
     public Integer getId() {
         return id;
     }
@@ -184,6 +178,4 @@ public class Country {
     public void setLanguages(Set<CountryLanguage> languages) {
         this.languages = languages;
     }
-
-
 }

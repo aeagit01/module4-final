@@ -32,9 +32,7 @@ import static java.util.Objects.nonNull;
 public class Main {
     private final SessionFactory sessionFactory;
     private final RedisClient redisClient;
-
     private final ObjectMapper mapper;
-
     private final CityDAO cityDAO;
     private final CountryDAO countryDAO;
 
@@ -82,6 +80,7 @@ public class Main {
             session.getTransaction().commit();
         }
     }
+
     private void testRedisData(List<Integer> ids) {
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
             RedisStringCommands<String, String> sync = connection.sync();
@@ -95,6 +94,7 @@ public class Main {
             }
         }
     }
+
     private void pushToRedis(List<CityCountry> preparedData) {
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
             RedisStringCommands<String, String> sync = connection.sync();
@@ -105,7 +105,6 @@ public class Main {
                     e.printStackTrace();
                 }
             }
-
         }
     }
 
@@ -159,6 +158,7 @@ public class Main {
                 .buildSessionFactory();
         return sessionFactory;
     }
+
     private void shutdown() {
         if (nonNull(sessionFactory)) {
             sessionFactory.close();
@@ -167,6 +167,7 @@ public class Main {
             redisClient.shutdown();
         }
     }
+
     private List<City> fetchData(Main main) {
         try (Session session = main.sessionFactory.getCurrentSession()) {
             List<City> allCities = new ArrayList<>();
@@ -181,6 +182,7 @@ public class Main {
             return allCities;
         }
     }
+
     private RedisClient prepareRedisClient() {
         RedisClient redisClient = RedisClient.create(RedisURI.create(KeysData.DATA_HOST_NAME, 6379));
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {

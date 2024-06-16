@@ -1,6 +1,7 @@
 package com.javarush.domain;
 
-import javax.persistence.*;
+//import javax.persistence.*;
+import jakarta.persistence.*;
 @Entity
 @Table(schema = "world",name = "city")
 public class City {

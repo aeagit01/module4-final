@@ -1,8 +1,10 @@
 package com.javarush.domain;
 
-//import jakarta.persistence.*;
+//import javax.persistence.*;
+import jakarta.persistence.*;
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.JdbcType;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
 @Entity
@@ -16,7 +18,8 @@ public class Country {
     private String alternativeCode;
     private String name;
     @Column(name = "continent")
-    @Enumerated(EnumType.ORDINAL)
+//    @Enumerated(EnumType.ORDINAL)
+    @Convert(converter = com.javarush.converter.ContinentToInt.class)
     private Continent continent;
 
     private String region;

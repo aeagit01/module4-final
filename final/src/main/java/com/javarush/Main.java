@@ -70,7 +70,7 @@ public class Main {
 
     }
 
-    private void testMysqlData(List<Integer> ids) {
+    void testMysqlData(List<Integer> ids) {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             for (Integer id : ids) {
@@ -81,7 +81,7 @@ public class Main {
         }
     }
 
-    private void testRedisData(List<Integer> ids) {
+    void testRedisData(List<Integer> ids) {
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
             RedisStringCommands<String, String> sync = connection.sync();
             for (Integer id : ids) {

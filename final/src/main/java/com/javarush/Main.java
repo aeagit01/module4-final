@@ -9,7 +9,7 @@ import com.javarush.domain.Country;
 import com.javarush.domain.CountryLanguage;
 import com.javarush.redis.CityCountry;
 import com.javarush.redis.Language;
-import com.javarush.tools.KeysData;
+import com.javarush.tools.KeysValue;
 
 import io.lettuce.core.RedisURI;
 import io.lettuce.core.RedisClient;
@@ -142,10 +142,10 @@ public class Main {
         final SessionFactory sessionFactory;
         Properties properties = new Properties();
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
-        properties.put(Environment.DRIVER, "com.p6spy.engine.spy.P6SpyDriver");
-        properties.put(Environment.URL, "jdbc:p6spy:mysql://" + KeysData.DATA_HOST_NAME + ":3306/world");
-        properties.put(Environment.USER, "root");
-        properties.put(Environment.PASS, KeysData.DATA_USER_PASS);
+        properties.put(Environment.JAKARTA_JDBC_DRIVER, "com.p6spy.engine.spy.P6SpyDriver");
+        properties.put(Environment.JAKARTA_JDBC_URL, "jdbc:p6spy:mysql://" + KeysValue.DATA_HOST_NAME + ":3306/world");
+        properties.put(Environment.JAKARTA_JDBC_USER, "root");
+        properties.put(Environment.JAKARTA_JDBC_PASSWORD, KeysValue.DATA_USER_PASS);
         properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
         properties.put(Environment.HBM2DDL_AUTO, "validate");
         properties.put(Environment.STATEMENT_BATCH_SIZE, "100");
@@ -184,7 +184,7 @@ public class Main {
     }
 
     private RedisClient prepareRedisClient() {
-        RedisClient redisClient = RedisClient.create(RedisURI.create(KeysData.DATA_HOST_NAME, 6379));
+        RedisClient redisClient = RedisClient.create(RedisURI.create(KeysValue.DATA_HOST_NAME, 6379));
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
             System.out.println("\nConnected to Redis\n");
         }

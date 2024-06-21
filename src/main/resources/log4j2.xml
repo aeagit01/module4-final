@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" desc="out">
+    <Appenders>
+        <RollingFile name="RollFile" fileName="logs/finalnb.log" filePattern="logs/finalhb.%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd} %d{HH:mm:ss,SSS} %-5level %logger{36}: %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${baseDir}/logs" maxDepth="2">
+                    <IfFileName glob="final.*.log"/>
+                    <IfLastModified age="P7D"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="RollFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

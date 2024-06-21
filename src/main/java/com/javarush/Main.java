@@ -9,7 +9,6 @@ import com.javarush.domain.Country;
 import com.javarush.domain.CountryLanguage;
 import com.javarush.redis.CityCountry;
 import com.javarush.redis.Language;
-import com.javarush.tools.KeysData;
 
 import com.javarush.tools.KeysValue;
 import io.lettuce.core.RedisURI;
